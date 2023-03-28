@@ -530,7 +530,7 @@ func (r *HorizonReconciler) generateServiceConfigMaps(
 
 	templateParameters := map[string]interface{}{
 		"keystoneURL":        keystonePublicURL,
-		"horizonDebug":       instance.Spec.Debug,
+		"horizonDebug":       instance.Spec.Debug.Service,
 		"horizonEndpointUrl": url,
 		"memcachedSvc":       memcachedSvc,
 	}
