@@ -24,7 +24,7 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/util/intstr"
+	// "k8s.io/apimachinery/pkg/util/intstr"
 )
 
 const (
@@ -138,6 +138,7 @@ func Deployment(instance *horizonv1.Horizon, configHash string, labels map[strin
 							SecurityContext: &corev1.SecurityContext{
 								RunAsUser: &runAsUser,
 							},
+<<<<<<< HEAD
 							Env:            env.MergeEnvs([]corev1.EnvVar{}, envVars),
 							VolumeMounts:   volumeMounts,
 							Resources:      instance.Spec.Resources,
@@ -145,6 +146,18 @@ func Deployment(instance *horizonv1.Horizon, configHash string, labels map[strin
 							LivenessProbe:  livenessProbe,
 							StartupProbe:   startupProbe,
 							Ports:          []corev1.ContainerPort{containerPort},
+=======
+							Env:          env.MergeEnvs([]corev1.EnvVar{}, envVars),
+							VolumeMounts: getVolumeMounts(),
+							Resources:    instance.Spec.Resources,
+							Ports: []corev1.ContainerPort{
+								{
+									Name:          "http",
+									Protocol:      corev1.ProtocolTCP,
+									ContainerPort: 80,
+								},
+							},
+>>>>>>> parent of 842186a (Enable liveness check)
 						},
 					},
 					Volumes: volumes,

@@ -52,10 +52,7 @@ DEBUG = False
 # with the list of host/domain names that the application can serve.
 # For more information see:
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-#ALLOWED_HOSTS = ["{{ .horizonEndpointUrl }}", ]
-# liveness checks will fail if we restrict this to just the route. We are setting
-# this to enable liveness checks.
-ALLOWED_HOSTS = ["*", ]
+ALLOWED_HOSTS = ["{{ .horizonEndpointUrl }}", ]
 
 # Set SSL proxy settings:
 # Pass this header from the proxy after terminating the SSL,
