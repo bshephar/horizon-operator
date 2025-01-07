@@ -53,11 +53,6 @@
     ],
     "permissions": [
         {
-            "path": "/var/log/horizon",
-            "owner": "apache:apache",
-            "recurse": true
-        },
-        {
             "path": "/etc/openstack-dashboard",
             "owner": "apache:apache",
             "recurse": true

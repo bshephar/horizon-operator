@@ -25,6 +25,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
+	"k8s.io/utils/ptr"
 )
 
 const (
@@ -39,7 +40,6 @@ func Deployment(
 	labels map[string]string,
 	annotations map[string]string,
 ) (*appsv1.Deployment, error) {
-	runAsUser := int64(0)
 
 	args := []string{"-c", ServiceCommand}
 
@@ -142,7 +142,7 @@ func Deployment(
 							Args:  args,
 							Image: instance.Spec.ContainerImage,
 							SecurityContext: &corev1.SecurityContext{
-								RunAsUser: &runAsUser,
+								RunAsUser: ptr.To(HorizonUID),
 							},
 							Env:            env.MergeEnvs([]corev1.EnvVar{}, envVars),
 							VolumeMounts:   volumeMounts,

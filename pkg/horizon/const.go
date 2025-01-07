@@ -32,6 +32,11 @@ const (
 	// HorizonPortTLS -
 	HorizonPortTLS int32 = 443
 
+	// heat:heat
+	HorizonUID int64 = 42419
+
+	HorizonGID int64 = 42419
+
 	// HorizonPortName -
 	HorizonPortName = "horizon"
 
